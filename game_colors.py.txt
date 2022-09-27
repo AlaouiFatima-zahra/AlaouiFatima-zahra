@@ -1,0 +1,86 @@
+homme(albert).
+homme(marc).
+homme(charles).
+femme(sara).
+pere(albert, marc).
+pere(albert, charles).
+pere(albert, sara).
+enfant(X, Y) :-pere(Y, X).
+fils(X, Y) :-enfant(X, Y), homme(X).
+fille(X, Y) :-enfant(X, Y), femme(X).
+frere-ou-soeur(X, Y) :-pere(Z, X), pere(Z, Y), X\=Y.
+
+
+
+crossword(V1,V2,V3,H1,H2,H3):- word(V1, V11,V12,V13,V14,V15,V16,V17),
+word(H1, H11,V12,H13,H14,H15,H16,H17),
+word(H2, H21,V14,H23,H24,H25,H26,H27),
+word(H3, H31,V16,H33,H34,H35,H36,H37),
+
+word(V2, V21,V22,V23,V24,V25,V26,V27),
+word(H1, H11,H12,H13,V22,H15,H16,H17),
+word(H2, H21,H22,H23,V24,H25,H26,H27),
+word(H3, H31,H32,H33,V26,H35,H36,H37),
+
+word(V3, V31,V32,V33,V34,V35,V36,V37),
+word(H1, H11,H12,H13,H14,H15,V32,H17),
+word(H2, H21,H22,H23,H24,H25,V34,H27),
+word(H3, H31,H23,H33,H34,H35,V36,H37).
+
+exercice 3
+Exercice1 :
+crossword(V1,V2,V3,H1,H2,H3) :-
+word(V1, _, V12, _, V14, _, V16, _),
+word(V2, _, V22, _, V24, _, V26, _),
+word(V3, _, V32, _, V34, _, V36, _),
+word(H1, _, V12, _, V22, _, V32, _),
+word(H2, _, V14, _, V24, _, V34, _),
+word(H3, _, V16, _, V26, _, V36, _),
+V1 = H1.
+crossword(V1,V2,V3,H1,H2,H3):- word(V1, V11, V12, V13, V14, V15, V16, V17),
+word(V2, V21, V22, V23, V24, V25, V26, V27),
+word(V3, V31, V32, V33, V34, V35, V36, V37),
+word(H1, H11, V12, H13, V22, H15, V32, H17),
+word(H2, H21, V14, H23, V24, H25, V34, H27),
+word(H3, H31, V16, H33, V26, H35, V36, H37).
+
+EXERCICE2
+couleur(jeune).
+couleur(rouge).
+couleur(bleu).
+coleur(vert).
+coloriage(C1, C2, C3, C4,C5,C6) :-
+couleur(C1), couleur(C2), couleur(C3), couleur(C4), couleur(C5), couleur(C6),
+C1\==C2, 
+C1\==C3,
+ C1\==C4,
+C1\==C5,
+C1\==C6,
+C2\==C3, 
+C2\==C4, 
+C2\==C5, 
+C2\==C6, 
+C3\==C4,
+C3\==C5, 
+C3\==C6, 
+C4\==C5,
+C4\==C6,
+C5\==C6.
+
+coloriage(C1, C2, C3, C4,C5,C6) :-
+couleur(C1), couleur(C2), C1\==C2,C1\==C5,C1\==C6,C2\==C3, 
+couleur(C3),couleur(C4), C3\==C4,C1\==C3, C1\==C4,C3\==C5, C3\==C6, C2\==C4, 
+couleur(C5),C2\==C5, C4\==C5,C2\==C5,
+couleur(C6),C4\==C6,C5\==C6, C2\==C6, 
+exercice3
+
+hanoi(N):-
+deplacer(N,gauche,centre,droite).
+deplacer(1,_,_,_):-!.
+deplacer(N,A,B,C):-
+M is N-1,
+deplacer(M,A,C,B),
+write(A),write('--->'),
+write(B),nl,
+deplacer(M,C,B,A)
+
